@@ -87,10 +87,11 @@
       const now = new Date().getTime();
       const diff = myDate - now;
 
-      let days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-      let hours = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-      let minutes = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-      let seconds = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
+      // 절댓값 처리: 디데이 이후에도 - 대신 숫자만 표시됨
+      let days = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((Math.abs(diff) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((Math.abs(diff) % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((Math.abs(diff) % (1000 * 60)) / 1000);
 
       document.getElementById("days").innerHTML = days;
       document.getElementById("hours").innerHTML = hours;
